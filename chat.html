@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>PetShop Amigo • Agendamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* --- Reset e Fontes --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background-color: #f0f7f9; /* Azul bem clarinho pet */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Container Principal --- */
+        #chat-container { 
+            background: #fff;
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+        }
+
+        /* --- Cabeçalho PetShop --- */
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #eef2f3;
+            text-align: center;
+            background-color: #fff;
+            z-index: 10;
+        }
+        header h2 { 
+            font-weight: 400; 
+            font-size: 22px; 
+            letter-spacing: 0.5px;
+            color: #2c3e50;
+        }
+        header h2 span { color: #3498db; } /* Azul Pet */
+        header p { font-size: 13px; color: #7f8c8d; margin-top: 4px; }
+
+        /* --- Área de Mensagens --- */
+        #messages { 
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            scroll-behavior: smooth;
+        }
+
+        #messages::-webkit-scrollbar { width: 0; background: transparent; }
+
+        .message {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 15px;
+            position: relative;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        /* Design Lateral Minimalista */
+        .message.user {
+            text-align: right;
+            color: #2c3e50;
+            padding-right: 15px;
+            border-right: 3px solid #bdc3c7; /* Cinza para o humano */
+        }
+
+        .message.bot {
+            text-align: left;
+            color: #2980b9;
+            padding-left: 15px;
+            border-left: 3px solid #3498db; /* Azul vivo para o Bot */
+        }
+
+        /* Tags Inferiores */
+        .message::after {
+            font-size: 9px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #bdc3c7;
+            position: absolute;
+            bottom: -18px;
+        }
+        .message.user::after { content: 'Você'; right: 15px; }
+        .message.bot::after { content: 'Pet Bot 🐾'; left: 15px; }
+
+        /* --- Área de Entrada --- */
+        #input-area { 
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #f0f3f4;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        input { 
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 15px;
+            border: 2px solid #f0f3f4;
+            border-radius: 25px; /* Arredondado estilo amigável */
+            background-color: #fcfdfe;
+            transition: all 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #fff;
+        }
+
+        button { 
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background-color: #3498db;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        button:hover { background-color: #2980b9; transform: scale(1.02); }
+        button:active { transform: scale(0.98); }
+
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <header>
+            <h2>PetShop <span>Amigo</span></h2>
+            <p>Agendamento de Banho e Tosa 🐾</p>
+        </header>
+
+        <div id="messages"></div>
+
+        <div id="input-area">
+            <input id="msg" type="text" placeholder="Como posso ajudar seu pet hoje?" autocomplete="off" />
+            <button onclick="enviar()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const RASA = "http://localhost:5005/webhooks/rest/webhook"
+        const box = document.getElementById("messages");
+        const inp = document.getElementById("msg");
+
+        function mostrar (texto, quem){
+            const p = document.createElement("p");
+            p.className = "message " + quem;
+            p.textContent = texto; 
+            box.appendChild(p);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        async function enviar(){
+            const texto = inp.value.trim();
+            if (!texto) return;
+            mostrar (texto, "user");
+            inp.value ="";
+
+            try{
+                const res = await fetch (RASA,{
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sender: "usuario", message: texto})
+                });
+
+                const data = await res.json();
+
+                if(data.length === 0){
+                    mostrar("(Sem resposta)", "bot");
+                } else {
+                    data.forEach(r => { if (r.text) mostrar(r.text, "bot"); });
+                }
+
+            } catch {
+                mostrar("Erro: O sistema do PetShop está em manutenção.", "bot")
+            }
+        }
+
+        inp.addEventListener("keydown", e => { if (e.key === "Enter") enviar(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+version: "3.1"
+
+stories:
+- story: agendamento petshop interativo
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento

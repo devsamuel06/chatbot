@@ -1,0 +1,58 @@
+version: "3.1"
+
+nlu:
+- intent: saudacao
+  examples: |
+    - oi
+    - olá
+    - bom dia
+    - boa tarde
+    - gostaria de marcar um horário
+    - opa, tudo bem?
+
+- intent: ver_servicos
+  examples: |
+    - quais serviços vocês oferecem?
+    - o que vocês fazem?
+    - tem banho disponível?
+    - quais são os preços?
+    - mostra a lista de serviços
+
+- intent: marcar_horario
+  examples: |
+    - quero marcar um [banho](servico) para o [Rex](nome_pet)
+    - gostaria de agendar uma [tosa](servico)
+    - quero levar meu gato para um [banho e tosa](servico)
+    - agendar [tosa higiênica](servico) para a [Luna](nome_pet)
+    - quero marcar um horário
+
+- intent: informar_detalhes_pet
+  examples: |
+    - o nome dele é [Pipoca](nome_pet)
+    - o nome dela é [Luna](nome_pet)
+    - é para o [Thor](nome_pet)
+    - chama-se [Mel](nome_pet)
+    - ele é um [Golden Retriever](raca)
+    - uma [Poodle](raca)
+    - [Bidu](nome_pet)
+    - [Rex](nome_pet)
+
+- intent: informar_horario
+  examples: |
+    - pode ser [amanhã às 14h](horario)
+    - [segunda às 10:00](horario)
+    - [hoje às 16h](horario)
+    - para as [15h](horario)
+
+- intent: confirmar_agendamento
+  examples: |
+    - pode confirmar
+    - fechado
+    - está certo
+    - sim, por favor
+
+- intent: despedida
+  examples: |
+    - tchau
+    - até logo
+    - valeu, abraço

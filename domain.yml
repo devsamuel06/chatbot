@@ -1,0 +1,54 @@
+version: "3.1"
+
+intents:
+  - saudacao
+  - despedida
+  - ver_servicos
+  - marcar_horario
+  - informar_detalhes_pet
+  - informar_horario
+  - confirmar_agendamento
+
+entities:
+  - servico
+  - nome_pet
+  - raca
+  - horario
+
+slots:
+  servico:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: servico
+  nome_pet:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: nome_pet
+  raca:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: raca
+  horario:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: horario
+
+responses:
+  utter_saudacao:
+    - text: "🐾 Olá! Bem-vindo ao PetShop Amigo. Como posso ajudar seu melhor amigo hoje?"
+  
+  utter_servicos:
+    - text: "Oferecemos: \n- Banho (R$ 50)\n- Tosa (R$ 60)\n- Banho e Tosa (R$ 100)\n- Tosa Higiênica (R$ 40)"
+
+  utter_confirmar_agendamento:
+    - text: "Perfeito! Horário reservado com muito carinho. Esperamos vocês! 🐶🐱"
+
+  utter_despedida:
+    - text: "Até logo! Qualquer dúvida é só chamar. Lambeijos! 🐾"
+
+actions:
+  - action_resumo_agendamento
