@@ -7,7 +7,6 @@ nlu:
     - olá
     - bom dia
     - boa tarde
-    - gostaria de marcar um horário
     - opa, tudo bem?
 
 - intent: ver_servicos
@@ -20,11 +19,34 @@ nlu:
 
 - intent: marcar_horario
   examples: |
-    - quero marcar um [banho](servico) para o [Rex](nome_pet)
-    - gostaria de agendar uma [tosa](servico)
-    - quero levar meu gato para um [banho e tosa](servico)
-    - agendar [tosa higiênica](servico) para a [Luna](nome_pet)
-    - quero marcar um horário
+    - quero marcar um [banho](servico)
+    - preciso de um [banho](servico)
+    - queria agendar uma [tosa](servico)
+    - tem horário pra [banho](servico)?
+    - quero agendar pro meu cachorro
+    - banho pro [Rex](nome_pet)
+    - tosa pra [Luna](nome_pet)
+    - banho e tosa pro [Thor](nome_pet)
+    - preciso de um horário
+    - quero levar meu pet aí
+
+- intent: informar_servico
+  examples: |
+    - [banho](servico)
+    - só [banho](servico)
+    - quero [banho](servico)
+    - [tosa](servico)
+    - só [tosa](servico)
+    - [banho e tosa](servico)
+    - [combo](servico)
+    - [tosa higiênica](servico)
+
+- lookup: servico
+  examples: |
+    - banho
+    - tosa
+    - banho e tosa
+    - tosa higiênica
 
 - intent: informar_detalhes_pet
   examples: |
@@ -39,10 +61,27 @@ nlu:
 
 - intent: informar_horario
   examples: |
-    - pode ser [amanhã às 14h](horario)
-    - [segunda às 10:00](horario)
-    - [hoje às 16h](horario)
-    - para as [15h](horario)
+    - [amanhã as 14h](horario)
+    - pode ser [as 15h](horario)
+    - [16 horas](horario)
+    - [hoje de tarde](horario)
+    - [amanhã de manhã](horario)
+    - [segunda as 10](horario)
+    - pode ser [mais tarde](horario)
+
+- lookup: horario
+  examples: |
+    - amanhã
+    - hoje
+    - depois de amanhã
+    - segunda-feira
+    - terça-feira
+    - de manhã
+    - à tarde
+    - à noite
+    - 14h
+    - 15h
+    - 16h
 
 - intent: confirmar_agendamento
   examples: |
@@ -50,9 +89,52 @@ nlu:
     - fechado
     - está certo
     - sim, por favor
+    - sim
 
 - intent: despedida
   examples: |
     - tchau
     - até logo
     - valeu, abraço
+
+- intent: afirmacao
+  examples: |
+    - sim
+    - com certeza
+    - pode ser
+    - está bom
+    - tá certo
+    - ok
+    - perfeito
+    - ótimo
+    - topado
+    - legal
+
+- intent: negacao
+  examples: |
+    - não
+    - nega
+    - nada
+    - sem ser
+    - não quero
+    - não gosto
+    - prefiro outra coisa
+    - outra opção
+    - tipo, não
+
+- intent: pedir_ajuda
+  examples: |
+    - pode ajudar?
+    - me ajuda
+    - como funciona?
+    - qual é o processo?
+    - como faço?
+    - qual o jeito?
+    - me explica
+    - entendi nada
+
+- intent: out_of_scope
+  examples: |
+    - não quero banho
+    - não quero agendar
+    - esquece isso

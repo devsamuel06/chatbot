@@ -8,6 +8,12 @@ intents:
   - informar_detalhes_pet
   - informar_horario
   - confirmar_agendamento
+  - informar_servico
+  - afirmacao
+  - negacao
+  - pedir_ajuda
+  - out_of_scope
+  - nlu_fallback
 
 entities:
   - servico
@@ -39,16 +45,49 @@ slots:
 
 responses:
   utter_saudacao:
-    - text: "🐾 Olá! Bem-vindo ao PetShop Amigo. Como posso ajudar seu melhor amigo hoje?"
+      - text: "🐾 Olá! Como posso ajudar você e seu pet hoje?"
+      - text: "Bem-vindo! O que seu pet está precisando hoje?"
   
   utter_servicos:
     - text: "Oferecemos: \n- Banho (R$ 50)\n- Tosa (R$ 60)\n- Banho e Tosa (R$ 100)\n- Tosa Higiênica (R$ 40)"
 
+  utter_pedir_servico:
+    - text: "Qual serviço você deseja para o pet? (Banho, Tosa, Banho e Tosa ou Tosa Higiênica)"
+    - text: "Qual desses serviços vai ser: banho, tosa, banho e tosa ou tosa higiênica?"
+
+  utter_pedir_nome_pet:
+    - text: "Qual é o nome do seu pet?"
+    - text: "E qual é o nome dele/dela?"
+
+  utter_pedir_horario:
+    - text: "Que horas você quer trazer o pet? "
+    - text: "Que dia e horário combinam com você?"
+
   utter_confirmar_agendamento:
     - text: "Perfeito! Horário reservado com muito carinho. Esperamos vocês! 🐶🐱"
+    - text: "Ótimo! Agendamento confirmado. Até logo!"
 
   utter_despedida:
     - text: "Até logo! Qualquer dúvida é só chamar. Lambeijos! 🐾"
+    - text: "Falou! Esperamos vocês. Abraço!"
+
+  utter_negacao_servico:
+    - text: "Sem problema! Qual serviço você gostaria então?"
+    - text: "Tudo bem, qual outro serviço posso oferecer?"
+
+  utter_pedindo_esclarecimento:
+    - text: "Me desculpa, não entendi bem. Você poderia repetir?"
+    - text: "Opa, não captei direito. Tenta de novo?"
+
+  utter_out_of_scope:
+    - text: "Desculpa, só posso ajudar com agendamentos de banho e tosa no petshop. 🐾"
+    - text: "Isso está fora do meu escopo, mas posso ajudar com serviços de pet!"
+
+  utter_ajuda:
+    - text: "Claro! Aqui é o Petshop. Você pode:\n1. Ver nossos serviços\n2. Agendar um banho ou tosa\n3. Falar sobre seu pet\nO que deseja?"
+    - text: "Eu posso ajudar você a agendar banho ou tosa pro seu pet. É simples! 😊"
 
 actions:
   - action_resumo_agendamento
+  - action_validar_servico
+  - action_limpar_slots

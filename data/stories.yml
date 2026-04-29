@@ -1,14 +1,109 @@
 version: "3.1"
 
 stories:
-- story: agendamento petshop interativo
+
+- story: agendamento petshop completo
   steps:
   - intent: saudacao
   - action: utter_saudacao
   - intent: marcar_horario
   - action: action_resumo_agendamento
+  - intent: informar_servico
+  - action: action_resumo_agendamento
   - intent: informar_detalhes_pet
   - action: action_resumo_agendamento
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento
+  - intent: despedida
+  - action: utter_despedida
+
+- story: ver servicos antes de agendar
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: ver_servicos
+  - action: utter_servicos
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento
+
+- story: usuario rejeita primeira opcao de servico
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  - intent: negacao
+  - action: utter_negacao_servico
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento
+
+- story: usuario responde com sim generico
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  - intent: afirmacao
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  - intent: afirmacao
+  - action: action_resumo_agendamento
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento
+
+- story: usuario pede ajuda durante conversa
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: pedir_ajuda
+  - action: utter_ajuda
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+
+- story: usuario faz pergunta irrelevante
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+
+- story: usuario rejeita confirmacao final
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  - intent: negacao
+  - action: utter_negacao_servico
   - intent: informar_horario
   - action: action_resumo_agendamento
   - intent: confirmar_agendamento

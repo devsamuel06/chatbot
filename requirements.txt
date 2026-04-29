@@ -1,0 +1,23 @@
+# Rasa Framework and Dependencies
+rasa==3.6.0
+rasa-sdk==3.6.0
+
+# Core Dependencies
+typing-extensions>=3.7.4.3
+protobuf>=3.17.3,<4.0.0
+
+# NLU and ML
+scikit-learn>=1.0.0
+scipy>=1.7.0
+tensorflow>=2.9.0,<2.14
+
+# Supporting Libraries
+requests>=2.25.0
+urllib3>=1.26.0
+pyyaml>=5.4.0
+ruamel.yaml>=0.17.0
+
+# Development (opcional, descomente se needed)
+# pytest>=6.2.0
+# black>=21.5b2
+# flake8>=3.9.0

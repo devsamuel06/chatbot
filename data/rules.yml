@@ -1,17 +1,82 @@
 version: "3.1"
 
 rules:
+
+# Saudação e início
 - rule: Saudação inicial
   steps:
   - intent: saudacao
   - action: utter_saudacao
 
+# Visualizar serviços
 - rule: Mostrar serviços
   steps:
   - intent: ver_servicos
   - action: utter_servicos
 
-- rule: Despedida
+# Pedir ajuda
+- rule: Quando o usuário pede ajuda
+  steps:
+  - intent: pedir_ajuda
+  - action: utter_ajuda
+
+# Out of scope - mensagens não relacionadas
+- rule: Lidar com mensagens fora do escopo
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+# Despedida
+- rule: Despedida do usuário
   steps:
   - intent: despedida
   - action: utter_despedida
+
+# Iniciar agendamento
+- rule: Iniciar o agendamento
+  steps:
+  - intent: marcar_horario
+  - action: action_resumo_agendamento
+  wait_for_user_input: true
+
+- rule: Informar serviço
+  steps:
+  - intent: informar_servico
+  - action: action_resumo_agendamento
+  wait_for_user_input: true
+
+- rule: Informar detalhes do pet
+  steps:
+  - intent: informar_detalhes_pet
+  - action: action_resumo_agendamento
+  wait_for_user_input: true
+
+- rule: Informar horário
+  steps:
+  - intent: informar_horario
+  - action: action_resumo_agendamento
+  wait_for_user_input: true
+
+# Confirmação
+- rule: Confirmar agendamento
+  steps:
+  - intent: confirmar_agendamento
+  - action: utter_confirmar_agendamento
+
+# Recuperação de erros
+- rule: Negação durante agendamento - oferece alternativa
+  steps:
+  - intent: negacao
+  - action: utter_negacao_servico
+
+- rule: Quando não entende a intenção - pede esclarecimento
+  steps:
+  - intent: nlu_fallback
+  - action: utter_pedindo_esclarecimento
+
+# Fallback para responder afirmações genéricas
+- rule: Afirmação de forma genérica continua agendamento
+  steps:
+  - intent: afirmacao
+  - action: action_resumo_agendamento
+  wait_for_user_input: true
