@@ -326,30 +326,4 @@ Contribuições são bem-vindas! Para contribuir:
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE) - veja o arquivo LICENSE para detalhes.
 
-## Contato
-
-Para dúvidas, sugestões ou reportar problemas:
-
-- **Issues**: [GitHub Issues](https://github.com/seu-usuario/petshop-chatbot/issues)
-- **Email**: seu-email@example.com
-- **LinkedIn**: [Seu Perfil](https://linkedin.com/in/seu-usuario)
-
-## Recursos de Aprendizado
-
-- [Documentação oficial do Rasa](https://rasa.com/docs/)
-- [Rasa Open Source GitHub](https://github.com/RasaHQ/rasa)
-- [Processamento de Linguagem Natural](https://pt.wikipedia.org/wiki/Processamento_de_linguagem_natural)
-- [Tutorial de Rasa em Português](https://blog.rasa.com/pt/)
-
-## Agradecimentos
-
-- Projeto desenvolvido como atividade acadêmica de PLN
-- Inspirado em chatbots de agendamento reais
-- Comunidade Rasa pelos excelentes recursos
-
----
-
-**Desenvolvido com dedicação aos nossos amigos de quatro patas**
-
-**Última atualização**: Abril 2026
 
