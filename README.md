@@ -1,4 +1,4 @@
-# Assistente PetShop Anelstore - Chatbot com Rasa
+# Assistente PetShop - Chatbot com Rasa
 
 Um assistente de inteligência artificial conversacional desenvolvido com **Rasa** para automatizar o agendamento de serviços em PetShop. O bot é capaz de compreender requisições em linguagem natural, coletar informações do usuário e confirmar agendamentos de forma intuitiva e personalizada.
 
